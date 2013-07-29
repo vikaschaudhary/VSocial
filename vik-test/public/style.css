@@ -1,0 +1,365 @@
+/*
+ * Copyright 2011 Google Inc.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+body {
+    background-color: #E5E5E5;
+    font: 13px Roboto,arial,sans-serif;
+    height: 100%;
+    margin: 0;
+    overflow-y: scroll;
+    visibility: visible;
+}
+
+.box {
+    border: 0em solid #E3E9FF;
+    -webkit-box-orient: vertical;
+    -webkit-box-align: center;
+    -moz-box-orient: vertical;
+    -moz-box-align: center;
+    display: block;
+    box-orient: vertical;
+    box-align: center;
+    width: 970px;
+    height: auto;
+    margin: auto;
+    padding: 10px;
+    word-wrap: break-word;
+    text-overflow: ellipsis;
+}
+
+.me {
+    background-color: #FFFFFF;
+    border: .5em solid #E3E9FF;
+    -webkit-box-orient: vertical;
+    -webkit-box-align: center;
+    -moz-box-orient: vertical;
+    -moz-box-align: center;
+    display: block;
+    box-orient: vertical;
+    box-align: center;
+    width: 750px;
+    height: auto;
+    margin: auto;
+    padding: 10px;
+    word-wrap: break-word;
+    text-overflow: ellipsis;
+}
+
+.activities {
+    -webkit-box-flex: 2;
+    -moz-box-flex: 2;
+    box-flex: 2;
+    width:100%;
+}
+
+.activity {
+    /* margin: 10px;*/
+}
+
+header.top {
+    color:#000;
+    padding:2px 5px;
+    font-size:100%;
+    width: 400px;
+    margin: auto;
+    text-align: center
+}
+
+header.top h1.logo {
+    margin:6px 0;
+    padding:0;
+    cursor:pointer;
+    font-size:24px;
+    line-height:20px;
+}
+
+.login {
+    font-size: 200%;
+    display: block;
+    margin: auto;
+    cursor: pointer;
+    text-align: center;
+    font-weight: bold;
+    color: #2779AA;
+    line-height: normal;
+}
+
+.logout {
+    font-weight: normal;
+    padding-top: -5px;
+    margin-top: 0px;
+}
+
+ul.people{list-style-type: none;}
+ul.people li{float: left;width: 200px;padding: 5px 10px;margin-right: 5px;margin-bottom: 10px;border: 1px solid #ccc;}
+.people-img, .me-img{float: left;margin-right:0px;width: 55px;}
+.people-name ,.people-name a, .me-name a{color: #123456;font-size: 15px;text-decoration: none;}
+.people-name a:hover{color:#000;}
+.people-name{width: 145px;float: right;}
+.me-name{width: 690px;float: right;}
+
+.sb{
+    -moz-box-sizing: border-box;
+    background-color: #E7E7E7;
+    border-bottom: medium none;
+    font-size: 13px;
+    line-height: 1.4;
+    margin: 10px 0 20px;
+    outline: medium none;
+    padding: 0;
+    position: relative;
+    word-wrap: break-word;
+    margin-bottom: 20px;
+}
+ul.activity{list-style-type: none;}
+ul.activity li{
+    opacity: 1;
+    position: relative;
+    visibility: visible;
+    z-index: auto;
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    -moz-box-sizing: border-box;
+    background-color: #FFFFFF;
+    border-color: #D8D8D8;
+    border-image: none;
+    border-left: 1px solid #D8D8D8;
+    border-radius: 3px 3px 3px 3px;
+    border-right: 1px solid #D8D8D8;
+    border-style: solid;
+    border-width: 0 1px 2px;
+    vertical-align: top;
+    font-size: 13px;
+    line-height: 1.4;
+    word-wrap: break-word;
+    width:435px;    
+    margin-right: 30px;
+}
+
+.even, .odd{float:left; width:45%}
+
+.attachment{
+    border-top: 1px solid #E5E5E5;
+    margin: 0 14px;
+    max-height: auto;
+    padding: 20px 0;
+}
+.attachment-image{
+    background-color: #F5F5F5;
+    line-height: 0;
+    min-width: 70px;
+    overflow: hidden;
+    position: relative;
+    float: left;
+    margin-right: 16px;
+    max-height: 120px;
+    max-width: 120px;
+}
+.attachment-image img{
+    max-height: 120px;
+    max-width: 120px;
+}
+.attachment-name{
+    line-height: 1.4;
+    overflow: hidden;
+    visibility: visible;
+}
+.attachment-name a{
+    color: #404040;
+    font: 300 16px/1.4 Roboto,arial,sans-serif;
+    max-height: 157px;
+    outline: medium none;
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: color 0.218s ease 0s;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+
+.attachment-link{padding-top: 9px;}
+.attachment-link a{
+    color: #999999;
+    display: block;
+    font-size: 12px;
+    line-height: 1.4;
+    overflow: hidden;
+    padding-top: 1px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    outline: medium none;
+    transition: color 0.218s ease 0s;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.activity-user-head{
+    margin-bottom: 20px;
+    padding: 0 20px;
+    position: relative
+}
+.actor-head{
+    margin: 0 0 15px 30px;
+    padding: 10px 0 0;
+    text-overflow: ellipsis;
+}
+.actor-head header{
+
+}
+
+.activity-user-head .feed-det, .activity-user-head .feed-det a{
+    color: #999999;
+    display: inline-block;
+    font-size: 12px;
+}
+
+.activity-user-head h3{
+    border: 0 none;
+    font-size: 14px;
+    font-weight: normal;
+    margin: 0;
+    unicode-bidi: normal;
+}
+.head-t{
+    text-decoration: none;
+    text-decoration: none;
+    color: #262626;
+    font-weight: bold;
+    cursor: pointer
+}
+
+.actor-img{
+    color: #427FED;
+    cursor: pointer;
+    text-decoration: none;
+    visibility: visible;
+}
+.actor-img img{
+    float: left;
+    margin: 20px 15px 0 0;
+    padding: 0;
+    border: 0 none;
+    border-radius: 50% 50% 50% 50%;
+}
+
+.user-activity{
+    margin: 0;
+    padding: 0 20px;
+    text-overflow: ellipsis;
+    visibility: visible;
+    font-size: 13px;
+    line-height: 1.4;
+    word-wrap: break-word;
+    white-space: normal;
+}
+
+.thumb_wrap{
+    clear: both;
+    line-height: 0;
+    overflow: hidden;
+    position: relative;
+}
+.t-h{
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 2;
+    -moz-box-sizing: border-box;
+    color: #FFFFFF;
+    line-height: 1.4;
+    padding: 15px;
+    position: absolute;
+    text-align: left;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+
+}
+.title-tag a{
+    display: inline-block;
+    max-width: 100%;
+    vertical-align: top;
+    color: #FFFFFF !important;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: #427FED;
+    cursor: pointer;
+    text-decoration: none;
+}
+.title-tag{
+    font: 16px Roboto,arial,sans-serif;
+    position: relative;
+    z-index: 2;
+    cursor: pointer;
+    color: #FFFFFF;
+    line-height: 1.4;
+    text-align: left;
+}
+.nNIfo{
+    overflow: hidden;
+}
+
+.info-wrap{
+    height: 173px;
+    width: 173px;
+    cursor: pointer;
+    display: inline-block;
+    margin-right: 1px;
+    background-color: #F5F5F5;
+    line-height: 0;
+    min-width: 70px;
+    overflow: hidden;
+    position: relative;
+}
+.info-wrap a img{
+    max-height: 100%;
+    max-width: 100%;
+    bottom: 0;
+    display: block;
+    left: 0;
+    margin: auto;
+    max-width: 100%;
+    position: absolute;
+    right: 0;
+    top: 0;
+    border: 0 none;
+}
+.info-wrap a{
+    outline: medium none;
+    color: #427FED;
+    cursor: pointer;
+    text-decoration: none;
+}
+.thumb-title{
+    cursor: pointer;
+    height: 90px;
+    -moz-box-sizing: border-box;
+    color: #FFFFFF;
+    line-height: 1.4;
+    padding: 15px;
+    position: absolute;
+    text-align: left;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+}
+
+
+.clearfix{clear:both; margin: 2px;}
