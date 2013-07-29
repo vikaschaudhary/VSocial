@@ -1,0 +1,33 @@
+<?php
+$this->headLink()->prependStylesheet($this->basePath() . '/assests/admin/plugins/editor/markitup/sets/default/style.css?r=20');
+$this->headLink()->prependStylesheet($this->basePath() . '/assests/admin/plugins/editor/markitup/skins/markitup/style.css?r=02');
+$this->headScript()->prependFile($this->basePath() . '/assests/admin/plugins/editor/markitup/sets/default/set.js?r=0');
+$this->headScript()->prependFile($this->basePath() . '/assests/admin/plugins/editor/markitup/jquery.markitup.js');
+?>
+<script type="text/javascript">
+  $(function() {
+    $('#page_content').markItUp(mySettings);
+  });
+</script>
+
+<div class="tabs">
+  <div id="tab-1" class="tab">
+    <article>
+      <div class="text-section page">        
+        <h1>Edit Page</h1>
+        <div class="form-container">
+
+          <?php
+          $form = $this->form;
+          $form->setAttribute('action', '');
+          $form->prepare();
+
+          echo $this->form()->openTag($form);
+          echo $this->formCollection($form);
+          echo $this->form()->closeTag();
+          ?>
+        </div>
+      </div>
+    </article>
+  </div>
+</div>

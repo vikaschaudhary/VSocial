@@ -1,0 +1,44 @@
+<?php
+$controller = strtolower(substr(end(explode("\\", $this->params()->fromRoute('controller'))), 0, -10));
+?>
+<aside id="sidebar">
+  <strong class="logo"><a href="<?= $this->url("admin") ?>">ZF2</a></strong>
+  <ul class="tabset buttons">
+    <li class="<?= ($controller) == "admin" ? "active" : null ?>">
+      <a href="<?= $this->url('admin') ?>" class="ico1"><span>Dashboard</span><em></em></a>
+      <span class="tooltip"><span>Dashboard</span></span>
+    </li>
+    <li class="<?= ($controller) == "blog" ? "active" : null ?>">
+      <a href="<?= $this->url('admin-blog') ?>" class="ico2"><span>Blog</span><em></em></a>
+      <span class="tooltip"><span>Blog</span></span>
+    </li>
+    <li class="<?= ($controller) == "listing" ? "active" : null ?>">
+      <a href="<?= $this->url('admin-listing') ?>" class="ico3"><span>Listing</span><em></em></a>
+      <span class="tooltip"><span>Listing</span></span>
+    </li>
+    <li class="<?= ($controller) == "pages" ? "active" : null ?>">
+      <a href="<?= $this->url('admin-pages') ?>" class="ico4"><span>Pages</span><em></em></a>
+      <span class="tooltip"><span>Pages</span></span>
+    </li>
+    <!--    <li>
+          <a href="#tab-5" class="ico5"><span>Archive</span><em></em></a>
+          <span class="tooltip"><span>Archive</span></span>
+        </li>
+        <li>
+          <a href="#tab-6" class="ico6">
+            <span>Comments</span><em></em>
+          </a>
+          <span class="num">11</span>
+          <span class="tooltip"><span>Comments</span></span>
+        </li>-->
+    <li class="<?= ($controller) == "users" ? "active" : null ?>">
+      <a href="<?= $this->url('admin-users') ?>" class="ico5"><span>Users</span><em></em></a>
+      <span class="tooltip"><span>Users</span></span>
+    </li>
+    <li class="<?= ($controller) == "setting" ? "active" : null ?>">
+      <a href="<?= $this->url('admin-settings') ?>" class="ico8"><span>Settings</span><em></em></a>
+      <span class="tooltip"><span>Settings</span></span>
+    </li>
+  </ul>
+  <span class="shadow"></span>
+</aside>

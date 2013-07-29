@@ -1,0 +1,50 @@
+<?php echo $this->doctype(); ?>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <script type="text/javascript">var SERVER_ROOT = "<?= $this->basePath() ?>"</script>
+    <?php
+    echo $this->headTitle('ZF2 ' . $this->translate('Vikas Zend Framework 2: Application'))
+            ->setSeparator(' - ')
+            ->setAutoEscape(false);
+    echo $this->headMeta()
+            ->appendName('viewport', 'width=device-width, initial-scale=1.0')
+            ->appendName('description', 'Vikas Zend Framework 2: Application')
+            ->appendName('keywords', 'Vikas, Zend, Framework, 2:, Application')
+            ->appendName('author', 'Vikas Chaudhary');
+
+    echo $this->headLink(array('rel' => 'shortcut icon', 'type' => 'image/x-icon', 'href' => $this->basePath() . '/assests/images/favicon.ico'))
+            ->prependStylesheet($this->basePath() . '/assests/css/reset.css')
+            ->prependStylesheet($this->basePath() . '/assests/css/pro_pages_style.css')
+            ->prependStylesheet($this->basePath() . '/assests/css/grid.css')
+            ->prependStylesheet($this->basePath() . '/assests/css/forms.css')
+            ->prependStylesheet($this->basePath() . '/assests/css/prettyPhoto.css')
+            ->prependStylesheet($this->basePath() . '/assests/css/jquery.snippet.min.css')
+            ->prependStylesheet($this->basePath() . '/assests/skin/blue.monday/jplayer.blue.monday.css')
+            //->prependStylesheet($this->basePath() . '/assests/smoothness/jquery-ui-1.8.17.custom.css')            
+            ->prependStylesheet($this->basePath() . '/assests/css/style.css');
+    echo $this->headStyle()->appendStyle($this->basePath() . '/assests/css/ie.css', array('conditional' => 'lt IE 8'));
+
+    echo $this->headScript()->prependFile($this->basePath() . '/assests/js/html5.js', 'text/javascript', array('conditional' => 'lt IE 9',))
+            #->prependFile($this->basePath() . '/assests/js/script.js?r=' . rand(0, 78521145))
+            ->prependFile($this->basePath() . '/assests/js/script_files_d.js');
+    ?>
+  </head>
+  <body>
+    <div class="bg">
+      <?php
+      echo $this->render('layout/header.phtml');
+      ?>
+      <section id="content" class="p15">
+        <div class="container_12">
+          <?php echo $this->content; ?>
+        </div>
+      </section>
+      <?php
+      echo $this->render('layout/footer.phtml');
+      ?>
+      <div class="foot-line"></div>
+    </div>
+    <?php echo $this->inlineScript() ?>
+  </body>
+</html>

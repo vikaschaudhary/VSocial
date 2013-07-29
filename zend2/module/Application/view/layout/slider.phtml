@@ -1,0 +1,74 @@
+<?php
+$params = $this->params()->fromRoute();
+$occr = array(" ", "'", ".", ",");
+$rep = array("-", '', "-", "-");
+if (explode("\\", $params['controller'])[0] == "Application" && explode("\\", $params['controller'])[2] == "Index" && $params['action'] == "index"):
+  ?>
+  <div class="slider">
+    <ul class="items">
+      <li>
+        <img height="431" width="940"  src="<?= $this->basePath() ?>/assests/images/home_slider/slide-8.jpg" alt=""/>
+        <div class="banner">
+          <span>Villa Italia</span>
+          <p>Praesent vestibulm mostie lacus. Aeneanmmy hendrerit mauris. Phases po. 
+            Fusce suscipit var mi. Cum sociis natoque pentis et ma.
+          </p>
+          <strong>$867,000</strong>
+        </div>
+      </li>
+      <li>
+        <img height="431" width="940"  src="<?= $this->basePath() ?>/assests/images/home_slider/slide-7.jpg" alt=""/>
+        <div class="banner">
+          <span>Villa Greece</span>
+          <p>Praesent vestibulm mostie lacus. Aeneanmmy
+            hendrerit mauris. Phases po. Fusce suscipit var mi. Cum sociis natoque 
+            pentis et ma.
+          </p>
+          <strong>$540`000</strong>
+        </div>
+      </li>
+      <li>
+        <img height="431" width="940"  height="431" width="940" src="<?= $this->basePath() ?>/assests/images/home_slider/slide-6.jpg" alt=""/>
+        <div class="banner"><span>Villa Spain</span>
+          <p>Praesent vestibulm mostie lacus. Aeneanmmy
+            hendrerit mauris. Phases po. Fusce suscipit var mi. Cum sociis natoque
+            pentis et ma.
+          </p>
+          <strong>$900`000</strong>
+        </div>
+      </li>
+      <li>
+        <img height="431" width="940"  src="<?= $this->basePath() ?>/assests/images/home_slider/slide-4.jpg" alt=""/>
+        <div class="banner"><span>Villa Spain</span>
+          <p>Praesent vestibulm mostie lacus. Aeneanmmy
+            hendrerit mauris. Phases po. Fusce suscipit var mi. Cum sociis natoque
+            pentis et ma.
+          </p>
+          <strong>$900`000</strong>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <?php
+elseif (explode("\\", $params['controller'])[0] == "Blog" && explode("\\", $params['controller'])[2] == "Index" && $params['action'] == "index"):
+  $blogs = $this->blog()->slider('Blog\Model\BlogTable');
+  if ($blogs && sizeof($blogs) > 0):
+    ?>
+    <div class="pro_kwicks-wrapper">
+      <ul class="pro_kwicks"> 
+        <?php foreach ($blogs as $key => $value): ?>
+          <li>
+            <div class="pro_slide-kwicks">
+              <a href="<?= $this->url('blog-detail', array("id" => $value->blog_id, 'title' => str_replace($occr, $rep, $value->title))) ?>">
+                <img width="940" height="500" src="<?= $this->basePath() ?>/assests/images/blogs/slider/<?= $value->images ?>" alt="">
+                <div class="pro_kwicks-banner"><?= $value->description ?></div>
+              </a>
+            </div>
+          </li>
+
+        <?php endforeach; ?>
+      </ul>
+    </div>
+
+  <?php endif; ?>
+<?php endif; ?>

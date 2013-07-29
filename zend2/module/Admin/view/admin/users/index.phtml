@@ -1,0 +1,115 @@
+<div class="tabs">
+  <div id="tab-1" class="tab">
+    <article>
+      <div class="text-section">
+        <h1>Users</h1>
+        <div class="listing">
+          <div id="search_wrapper">          
+            <?php
+            $uri_params = $page_params;
+            unset($uri_params['order_by']);
+            $uri_params = array_filter($uri_params);
+            $uri_params['order'] = $order;
+            $form = $this->search_form;
+            $form->prepare();
+            echo $this->form()->openTag($form);
+            echo $this->formCollection($form);
+            echo $this->form()->closeTag();
+            ?>
+            <div class="clear"></div>
+          </div>
+          <table id="admin-blog-list" name="admin-blog-list" border="0">
+            <thead>
+              <tr>
+                <th width="5%">
+                  <a href="<?= $this->url('admin-users', array_merge($uri_params, array("page" => $page, "order_by" => "user_id"))) ?>">
+                    Id
+                  </a>
+                </th>
+                <th width="13%">
+                  <a href="<?= $this->url('admin-users', array_merge($uri_params, array("page" => $page, "order_by" => "username"))) ?>">
+                    Username
+                  </a>
+                </th>
+                <th width="17%">
+                  <a href="<?= $this->url('admin-users', array_merge($uri_params, array("page" => $page, "order_by" => "user_email"))) ?>">
+                    Email
+                  </a>
+                </th>
+                <th width="12%">
+                  <a href="<?= $this->url('admin-users', array_merge($uri_params, array("page" => $page, "order_by" => "first_name"))) ?>">
+                    First Name
+                  </a>
+                </th>              
+                <th width="12%">
+                  <a href="<?= $this->url('admin-users', array_merge($uri_params, array("page" => $page, "order_by" => "last_name"))) ?>">
+                    Last Name
+                  </a>
+                </th>
+                <th width="12%">
+                  <a href="<?= $this->url('admin-users', array_merge($uri_params, array("page" => $page, "order_by" => "gender"))) ?>">
+                    Gender
+                  </a>
+                </th>              
+                <th width="14%">
+                  <a href="<?= $this->url('admin-users', array_merge($uri_params, array("page" => $page, "order_by" => "date_of_birth"))) ?>">
+                    Birth Date
+                  </a>
+                </th>              
+                <th width="5%">
+                  <a href="<?= $this->url('admin-users', array_merge($uri_params, array("page" => $page, "order_by" => "isAdmin"))) ?>">
+                    isAdmin
+                  </a>
+                </th>  
+                <th width="5%">&nbsp;</th>
+                <th width="5%">&nbsp;</th>
+                <th width="5%">&nbsp;</th>        
+
+              </tr>
+            </thead>
+            <tbody>
+              <?php if (sizeof($paginator) > 0): ?>
+                <?php foreach ($paginator as $users): ?>
+                  <tr height="28">
+                    <td align="middle"><?= $users->user_id ?></td>
+                    <td align="middle"><?= $users->username ?></td>
+                    <td align="middle"><?= $users->email ?></td>
+                    <td align="middle"><?= $users->first_name ?></td>                
+                    <td align="middle"><?= $users->last_name ?></td>
+                    <td align="middle"><?= $users->gender ?></td>
+                    <td align="middle"><?= $users->date_of_birth ?></td>
+                    <td align="middle"><?= $users->isAdmin ?></td>
+                    <td align="middle"><a href="<?= $this->url("admin-user-edit", array("user_id" => $users->user_id, "page" => $page)) ?>">Edit</a></td>
+                    <td align="middle"><a height="30%" width="60%" class="various fancybox.iframe" href="<?= $this->url("admin-user-delete", array("user_id" => $users->user_id, "page" => $page)) ?>">Delete</a></td>
+                    <td align="middle"><a href="<?= $this->url("admin-user-view", array("user_id" => $users->user_id, "page" => $page)) ?>">View</a></td>
+
+                  </tr>
+                <?php endforeach; ?>
+              <?php else: ?>
+                <tr  height="50" >
+                  <td colspan="8" align="middle" valign="center">
+                    No record(s) found.
+                  </td>
+                </tr>
+              <?php endif; ?>
+
+              <tr  class="no-border">
+                <td colspan="11" align="right" valign="center">
+                  <div id="admin-paginator-wrapper">
+                    <?php
+                    $params = array(
+                        "route" => "admin-users",
+                        "page_params" => array_filter($page_params),
+                    );
+                    echo $this->paginationControl($paginator, 'Sliding', 'admin-paginator-slide', $params);
+                    ?>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </article>
+  </div>
+</div>

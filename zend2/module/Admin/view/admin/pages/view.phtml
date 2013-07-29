@@ -1,0 +1,9 @@
+<?php echo $this->headLink()->prependStylesheet($this->basePath() . '/assests/admin/css/popup.css?r=' . rand(0, 9999)) ?>
+
+<article>
+  <div class="text-section page">             
+    <div class="content-container">
+      <?= $page->content ?>
+    </div>      
+  </div>
+</article>

@@ -1,0 +1,48 @@
+<?php
+echo $this->headLink()->prependStylesheet($this->basePath() . '/assests/admin/css/popup.css?r=' . rand(0, 9999));
+echo $this->headScript()
+        ->prependFile($this->basePath() . '/assests/admin/js/popup_script.js')
+        ->prependFile($this->basePath() . '/assests/admin/js/jquery-1.10.1.min.js');
+?>
+<?php
+if ($user) {
+  if ($user->isAdmin == 1) {
+    $_message = "You cannot delete an admin user.";
+  } else {
+    $_message = "Are you sure you want to delete <b>{$user->first_name} {$user->last_name}</b>.";
+  }
+  $success = 0;
+} else {
+  $_message = $message;
+  $success = 2;
+}
+?>
+
+<article>
+  <?php if ($success == 0) : ?>  
+    <div class='center-content'>
+      <ul class="states">            
+        <li class="warning"><?= $_message ?>.</li>        
+      </ul>
+      <?php if ($user->isAdmin != 1): ?>
+        <form id="delete-user" name="delete-user" method="post" action="">
+          <button class="delete" type="submit" id="delete-yes" name="delete-yes" value="yes">Yes</button>
+          <button class="delete" type="submit" id="delete-no" name="delete-no" value="no">No</button>
+        </form>
+      <?php else: ?>
+        <button style="margin-left:40%;" class="delete" type="submit" id="delete-no" name="delete-no" value="no">Close</button>
+      <?php endif; ?>
+    <?php elseif ($success == 2) : ?>
+      <ul class="states">            
+        <li class="succes">Success : <?= $_message ?>.</li>        
+      </ul>  
+      <script type="text/javascript">
+        setTimeout(function() {
+          close_fancybox(true);
+        }, 2000);
+      </script>
+    <?php endif; ?>
+  </div>
+</article>
+
+

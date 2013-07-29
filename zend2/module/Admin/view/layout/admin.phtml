@@ -1,0 +1,60 @@
+<?php echo $this->doctype(); ?>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <?php
+    echo $this->headTitle('Admin - Zend Framework 2 Admin Interface')
+            ->setSeparator(' - ')
+            ->setAutoEscape(false);
+    echo $this->headMeta()
+            ->appendName('viewport', 'width=device-width, initial-scale=1.0');
+
+    echo $this->headLink()
+            ->prependStylesheet($this->basePath() . '/assests/admin/css/style.css?r=' . rand(0, 9999))
+            ->prependStylesheet($this->basePath() . '/assests/admin/plugins/fancyBox2/source/jquery.fancybox.css?v=2.1.5');
+
+    echo $this->headScript()->prependFile($this->basePath() . '/assests/admin/js/script.js')
+            ->prependFile($this->basePath() . '/assests/admin/plugins/fancyBox2/lib/jquery.mousewheel-3.0.6.pack.js')
+            ->prependFile($this->basePath() . '/assests/admin/plugins/fancyBox2/source/jquery.fancybox.pack.js?v=2.1.5')
+            ->prependFile($this->basePath() . '/assests/admin/js/jquery-1.10.1.min.js')
+            ->prependFile($this->basePath() . '/assests/admin/js/html5.js', 'text/javascript', array('conditional' => 'lt IE 9',));
+    ?>
+
+  </head>
+  <?php
+  $session = $this->adminSession()->getSession();
+  $isLogin = (isset($session->admin->isLoggin) && $session->admin->isLoggin) ? true : false;
+  if ($isLogin) {
+    $wrapper_class = "wrapper";
+    $cl_mrgin = "";
+    $body_bg = "";
+  } else {
+    $wrapper_class = "wrapper-nb";
+    $cl_mrgin = "margin-0";
+    $body_bg = "body-bg";
+  }
+  ?>
+  <body class="<?= $body_bg ?>">
+    <div id="<?= $wrapper_class ?>">
+      <div id="content">
+        <div class="c1 <?= $cl_mrgin ?>">
+          <?php
+          if ($isLogin) {
+            echo $this->render('layout/controlls.phtml');
+          }
+          ?>
+          <?php echo $this->content; ?>
+        </div>
+      </div>
+      <?php
+      if ($isLogin) {
+        echo $this->render('layout/side-bar.phtml');
+      }
+      ?>
+    </div>
+
+    <?php echo $this->inlineScript() ?>
+
+  </body>
+</html>

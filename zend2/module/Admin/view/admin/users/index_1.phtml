@@ -1,0 +1,214 @@
+<?php
+$this->headLink()->prependStylesheet($this->basePath() . '/assests/admin/plugins/jqwidgets/styles/jqx.base.css');
+$this->headScript()->prependFile($this->basePath() . '/assests/admin/plugins/jqwidgets/scripts/gettheme.js');
+$this->headScript()->prependFile($this->basePath() . '/assests/admin/plugins/jqwidgets/jqxgrid.sort.js');
+$this->headScript()->prependFile($this->basePath() . '/assests/admin/plugins/jqwidgets/jqxgrid.pager.js');
+$this->headScript()->prependFile($this->basePath() . '/assests/admin/plugins/jqwidgets/jqxlistbox.js');
+$this->headScript()->prependFile($this->basePath() . '/assests/admin/plugins/jqwidgets/jqxdropdownlist.js');
+$this->headScript()->prependFile($this->basePath() . '/assests/admin/plugins/jqwidgets/jqxgrid.filter.js');
+$this->headScript()->prependFile($this->basePath() . '/assests/admin/plugins/jqwidgets/jqxgrid.selection.js');
+$this->headScript()->prependFile($this->basePath() . '/assests/admin/plugins/jqwidgets/jqxgrid.columnsresize.js');
+$this->headScript()->prependFile($this->basePath() . '/assests/admin/plugins/jqwidgets/jqxgrid.js');
+$this->headScript()->prependFile($this->basePath() . '/assests/admin/plugins/jqwidgets/jqxmenu.js');
+$this->headScript()->prependFile($this->basePath() . '/assests/admin/plugins/jqwidgets/jqxscrollbar.js');
+$this->headScript()->prependFile($this->basePath() . '/assests/admin/plugins/jqwidgets/jqxbuttons.js');
+$this->headScript()->prependFile($this->basePath() . '/assests/admin/plugins/jqwidgets/jqxdata.js');
+$this->headScript()->prependFile($this->basePath() . '/assests/admin/plugins/jqwidgets/jqxcore.js');
+?>
+<script type="text/javascript">
+  $(document).ready(function() {
+    var theme = getDemoTheme();
+    var source = {
+      datatype: "json",
+      datafields: [
+        {name: 'user_id', type: 'int'},
+        {name: 'first_name'},
+        {name: 'last_name'},
+        {name: 'username'},
+        {name: 'email', },
+        {name: 'date_of_birth', type: 'date'},
+        {name: 'gender'},
+        {name: 'isAdmin'}
+      ],
+      id: 'user_id',
+      url: "<?= $this->url('admin-crud-users'); ?>",
+      root: 'data'
+    };
+
+    $("#jqxgrid").jqxGrid({
+      source: new $.jqx.dataAdapter(source),
+      theme: theme,
+      columnsresize: true,
+      width: 950,
+      height: 365,      
+      rowsheight: 35,
+      sortable: true,
+      filterable: true,
+      altrows: true,
+      pageable: true,
+      columns: [
+        {text: 'UserID', dataField: 'user_id', width: 50, cellsalign: 'middle'},
+        {text: 'First Name', dataField: 'first_name', width: 100},
+        {text: 'Last Name', dataField: 'last_name', width: 100},
+        {text: 'Username', dataField: 'username', width: 100},
+        {text: 'Email', dataField: 'email', width: 200},
+        {text: 'Date of Birth', dataField: 'date_of_birth', width: 195,cellsformat: 'D'},
+        {text: 'Admin', dataField: 'isAdmin', width: 70},
+        {text: 'Gender', dataField: 'gender', width: 60},
+        {text: 'Edit', datafield: 'edit', width: 75, columntype: 'button', cellsrenderer: function() {
+            return "Edit";
+          }, buttonclick: function(row) {
+            rowData = $("#jqxgrid").jqxGrid('getrowdata', row)
+            edit_url = "/admin-user-edit/user/" + rowData.user_id;
+
+            // IE8 and lower fix
+            if (navigator.userAgent.match(/MSIE\s(?!9.0)/)) {
+              var referLink = document.createElement('a');
+              referLink.href = edit_url;
+              document.body.appendChild(referLink);
+              referLink.click();
+            }
+
+            // All other browsers
+            else {
+              window.location.href = edit_url;
+            }
+          }
+        }
+      ]
+    });
+
+
+//    var source = {
+//      datatype: "json",
+//      datafields: [
+//        {name: 'user_id', type: 'int'},
+//        {name: 'first_name'},
+//        {name: 'last_name'},
+//        {name: 'username'},
+//        {name: 'email', },
+//        {name: 'date_of_birth', type: 'date'},
+//        {name: 'gender'},
+//        {name: 'isAdmin'}
+//      ],
+//      id: 'user_id',
+//      url: "<?= $this->url('admin-crud-users'); ?>",
+//      root: 'data'
+//    };
+
+
+
+
+    // create nested grid.
+//    var initrowdetails = function(index, parentElement, gridElement, record) {
+//      var id = record.user_id;
+//      var uSource = {
+//        datatype: "json",
+//        datafields: [
+//          {name: 'user_id', type: 'int'},
+//          {name: 'first_name'},
+//          {name: 'last_name'},
+//          {name: 'username'},
+//          {name: 'email', },
+//          {name: 'date_of_birth', type: 'date'},
+//          {name: 'gender'},
+//          {name: 'isAdmin'}
+//        ],
+//        id: 'user_id',
+//        url: "/admin-crud-user/user/" + id,
+//        root: 'data',        
+//      };
+//      var dataAdapter = new $.jqx.dataAdapter(uSource);
+//
+//      $("#grid").jqxGrid({
+//        width: 875,
+//        source: dataAdapter,
+//        theme: theme,
+//        columnsresize: true,
+//        columns: [
+//          {text: 'UserID', dataField: 'user_id', width: 50, cellsalign: 'middle'},
+//          {text: 'First Name', dataField: 'first_name', width: 100},
+//          {text: 'Last Name', dataField: 'last_name', width: 100},
+//          {text: 'Username', dataField: 'username', width: 100},
+//          {text: 'Email', dataField: 'email', width: 200},
+//          {text: 'Date of Birth', dataField: 'date_of_birth', width: 270},
+//          {text: 'Gender', dataField: 'gender', width: 60}
+//        ]
+//      });
+//    }
+
+//    var photorenderer = function(row, column, value) {
+//      var name = $('#jqxgrid').jqxGrid('getrowdata', row).FirstName;
+//      var imgurl = '../../images/' + name.toLowerCase() + '.png';
+//      var img = '<div style="background: white;"><img style="margin:2px; margin-left: 10px;" width="32" height="32" src="' + imgurl + '"></div>';
+//      return img;
+//    }
+//
+//    var renderer = function(row, column, value) {
+//      return '<span style="margin-left: 4px; margin-top: 9px; float: left;">' + value + '</span>';
+//    }
+
+
+    // creage jqxgrid
+//    $("#jqxgrid").jqxGrid({
+//      width: 950,
+//      height: 365,
+//      source: source,
+//      theme: theme,
+//      rowdetails: true,
+//      rowsheight: 35,
+//      sortable: true,
+//      filterable: true,
+//      altrows: true,
+//      columnsresize: true,
+//      pageable: true,
+//      initrowdetails: initrowdetails,
+//      rowdetailstemplate: {rowdetails: "<div id='grid' style='margin: 10px;'></div>", rowdetailsheight: 80, rowdetailshidden: true},
+//      ready: function() {
+//        // $("#jqxgrid").jqxGrid('showrowdetails', 1);
+//      },
+//      columns: [
+//        {text: 'UserID', dataField: 'user_id', width: 50, cellsalign: 'middle'},
+//        {text: 'First Name', dataField: 'first_name', width: 100},
+//        {text: 'Last Name', dataField: 'last_name', width: 100},
+//        {text: 'Username', dataField: 'username', width: 100},
+//        {text: 'Email', dataField: 'email', width: 180},
+//        {text: 'Date of Birth', dataField: 'date_of_birth', width: 230},
+//        {text: 'Admin', dataField: 'isAdmin', width: 45},
+//        {text: 'Gender', dataField: 'gender', width: 45},
+//        {text: 'Edit', datafield: 'edit', width: 75, columntype: 'button', cellsrenderer: function() {
+//            return "Edit";
+//          }, buttonclick: function(row) {
+//            rowData = $("#jqxgrid").jqxGrid('getrowdata', row)
+//            edit_url = "/admin-user-edit/user/" + rowData.user_id;
+//
+//            // IE8 and lower fix
+//            if (navigator.userAgent.match(/MSIE\s(?!9.0)/)) {
+//              var referLink = document.createElement('a');
+//              referLink.href = edit_url;
+//              document.body.appendChild(referLink);
+//              referLink.click();
+//            }
+//
+//            // All other browsers
+//            else {
+//              window.location.href = edit_url;
+//            }
+//          }
+//        }
+//      ]
+//
+//
+//    });
+  });
+</script>
+<div class="tabs">
+  <div id="tab-1" class="tab">
+    <article>
+      <div class="text-section">
+        <h1>Users</h1>
+        <div id="jqxgrid" style="width:100%"></div>
+      </div>
+    </article>
+  </div>
+</div>

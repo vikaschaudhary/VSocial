@@ -1,0 +1,23 @@
+.slider{height:431px;margin:0 auto;position:relative;width:940px;overflow:visible!important;z-index:2;}
+.items{display:none;}
+.pagination{position:absolute;bottom:-18px;right:0px;display:inline-block;height:9px;z-index:60;}
+.pagination li{float:left;padding:0 0px 0 1px;font-size:0;line-height:0;margin:0;}
+.pagination a{display:block;width:46px;height:8px;background:url(../images/pagin-a.png) no-repeat 0 0;font-size:0;line-height:0;text-decoration:none;}
+.pagination li.current a,.pagination a:hover{background-position:0 -24px;}
+.prev{display:block;width:25px;height:22px;position:absolute;z-index:15;bottom:2px;right:9px;}
+.next{display:block;width:25px;height:22px;position:absolute;z-index:15;bottom:2px;right:9px;}
+.prev:hover,.next:hover{background-position:0 -70px;}
+.play{display:block;width:45px;height:22px;background:url(http://livedemo00.template-help.com/wt_42510/images/pagination-bg.gif) left top repeat-x;position:absolute;z-index:15;border-radius:15px;-moz-border-radius:15px;-webkit-border-radius:15px;top:552px;left:823px;padding:2px 0 0 0;text-align:center;color:#fff;text-decoration:none;}
+.play span{display:none;}
+.play em{font-style:normal;display:block;}
+.paused span{display:block;}
+.paused em{display:none;}
+.banner{background:url("../images/banner-bg.png") no-repeat scroll 0 0 transparent;border-radius:4px 4px 4px 4px;color:#929292;font-family:'PT Sans',sans-serif;font-size:15px;left:528px;line-height:18px;overflow:hidden;padding:35px 33px 47px 34px;position:absolute;top:107px;width:325px;z-index:15;}
+.banner span{color:#FFFFFF;display:block;font-size:30px;letter-spacing:-1px;line-height:36px;margin-bottom:15px;}
+.banner p{padding-bottom:19px;}
+.banner strong{color:#FFFFFF;display:block;font-size:28px;letter-spacing:-1px;line-height:34px;}
+.progbar{background:#000;width:100%;height:2px;position:absolute;top:0px;left:0px;z-index:999;}
+.numStatus{display:block;width:45px;height:22px;background:url(http://livedemo00.template-help.com/wt_42510/images/pagination-bg.gif) left top repeat-x;position:absolute;z-index:15;border-radius:15px;-moz-border-radius:15px;-webkit-border-radius:15px;top:551px;left:583px;padding:2px 0 0 0;text-align:center;color:#fff;text-decoration:none;}
+.col-1{float:left;width:400px;padding-right:50px}
+*+html .min{min-height:45px;}
+.col-2{float:left;width:400px;}

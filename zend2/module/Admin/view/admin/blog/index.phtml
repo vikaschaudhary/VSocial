@@ -1,0 +1,122 @@
+<div class="tabs">
+  <div id="tab-1" class="tab">
+    <article>
+      <div class="text-section">
+        <h1>Blogs</h1>
+        <div class="listing">
+          <div id="search_wrapper">          
+            <?php
+            /**
+             * set uri prams
+             */
+            $uri_params = $page_params;
+            unset($uri_params['order_by']);
+            $uri_params = array_filter($uri_params);
+            $uri_params['order'] = $order;
+            /**
+             * Setup search form
+             */
+            $form = $this->search_form;
+            $form->prepare();
+            echo $this->form()->openTag($form);
+            echo $this->formCollection($form);
+            echo $this->form()->closeTag();
+            ?>
+            <div class="clear"></div>
+          </div>
+          <table id="admin-blog-list" name="admin-blog-list" border="0" width="100%">
+            <thead>
+              <tr>
+                <th width="2%">
+                  <a href="<?= $this->url('admin-blog', array_merge($uri_params, array("page" => $page, "order_by" => "blog_id"))) ?>">
+                    Id
+                  </a>
+                </th>
+                <th width="50%">
+                  <a href="<?= $this->url('admin-blog', array_merge($uri_params, array("page" => $page, "order_by" => "blog_title"))) ?>">
+                    Title
+                  </a>
+                </th>
+                <th width="10%">
+                  <a href="<?= $this->url('admin-blog', array_merge($uri_params, array("page" => $page, "order_by" => "username"))) ?>">
+                    Author
+                  </a>
+                </th>
+                <th width="10%">
+                  <a href="<?= $this->url('admin-blog', array_merge($uri_params, array("page" => $page, "order_by" => "category_title"))) ?>">
+                    Category
+                  </a>
+                </th>              
+                <th width="12%">
+                  <a href="<?= $this->url('admin-blog', array_merge($uri_params, array("page" => $page, "order_by" => "written_date"))) ?>">
+                    Date
+                  </a>
+                </th>
+                <th width="4%">
+                  <a href="<?= $this->url('admin-blog', array_merge($uri_params, array("page" => $page, "order_by" => "is_archive"))) ?>">
+                    Archive
+                  </a>
+                </th>              
+                <th width="4%">
+                  <a href="<?= $this->url('admin-blog', array_merge($uri_params, array("page" => $page, "order_by" => "is_draft"))) ?>">
+                    Draft
+                  </a>
+                </th>              
+                <th width="4%">
+                  <a href="<?= $this->url('admin-blog', array_merge($uri_params, array("page" => $page, "order_by" => "is_publish"))) ?>">
+                    Publish
+                  </a>
+                </th>              
+                <th width="4%">
+                  <a href="<?= $this->url('admin-blog', array_merge($uri_params, array("page" => $page, "order_by" => "total_comments"))) ?>">
+                    Comments
+                  </a>
+                </th>              
+              </tr>
+            </thead>
+            <tbody>
+              <?php if (sizeof($paginator) > 0): ?>
+                <?php foreach ($paginator as $blogs): ?>
+                  <tr>
+                    <td align="middle"><?= $blogs->blog_id ?></td>
+                    <td>
+                      <div class="row-div">
+                        <?= $blogs->blog_title ?>
+                      </div>
+                    </td>
+                    <td align="middle"><?= $blogs->author ?></td>
+                    <td align="middle"><?= $blogs->category ?></td>                
+                    <td align="middle"><?= $blogs->blog_date ?></td>
+                    <td align="middle"><?= $blogs->is_archive ?></td>                              
+                    <td align="middle"><?= $blogs->is_draft ?> </td>                              
+                    <td align="middle"><?= $blogs->is_publish ?></td>                              
+                    <td align="middle"> (<?= $blogs->total_comments ?>)</td>                              
+                  </tr>
+                <?php endforeach; ?>          
+              <?php else: ?>
+                <tr  height="50" >
+                  <td colspan="8" align="middle" valign="center">
+                    No record(s) found.
+                  </td>
+                </tr>
+              <?php endif; ?>
+
+              <tr  class="no-border">
+                <td colspan="11" align="right" valign="center">
+                  <div id="admin-paginator-wrapper">
+                    <?php
+                    $params = array(
+                        "route" => "admin-blog",
+                        "page_params" => array_filter($page_params),
+                    );
+                    echo $this->paginationControl($paginator, 'Sliding', 'admin-paginator-slide', $params);
+                    ?>
+                  </div>
+                </td>
+              </tr>
+          </table>         
+        </div>
+      </div>
+    </article>
+  </div>
+</div>

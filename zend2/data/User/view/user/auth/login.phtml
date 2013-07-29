@@ -1,0 +1,34 @@
+<?php
+$form->prepare();
+$form->setAttribute('action', $this->url('user_login'));
+$form->setAttribute('method', 'post');
+$form->setAttribute('id', 'pro_form2');
+$formLabel = $this->plugin('formLabel');
+$email = $form->get('email');
+$password = $form->get('password');
+$remember = $form->get('remember_me');
+$submit_login = $form->get('submit_login');
+?>
+<div class="pro_intro-video">
+  <div class="pro_iframe">
+    <?= $this->form()->openTag($form); ?>
+    <?= $formLabel->openTag() ?>
+    <span class="pro_text-form"><?= $email->getOption('label') ?>:</span>
+    <?= $this->formInput($email) ?>
+    <?= $this->formElementErrors($email) ?>
+    <?= $formLabel->closeTag() ?>
+    <?= $formLabel->openTag() ?>
+    <span class="pro_text-form"><?= $password->getOption('label') ?>:</span>
+    <?= $this->formInput($password) ?>
+    <?= $this->formElementErrors($password) ?>
+    <?= $formLabel->closeTag() ?>      
+    <div class="pro_wrapper">
+      <?= $this->formInput($submit_login) ?>
+      <label class="fright">
+        <?= $this->formInput($remember) ?>
+        <div class="pro_text-form3 fleft">Remember Me</div>
+      </label>
+    </div>
+    <?= $this->form()->closeTag($form); ?>
+  </div>
+</div>

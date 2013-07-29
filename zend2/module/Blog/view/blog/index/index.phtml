@@ -1,0 +1,86 @@
+<?php
+$occr = array(" ", "'", ".", ",");
+$rep = array("-", '', "-", "-");
+?>
+<div class="wrapper">
+  <article class="grid_9">
+    <h4>Blogs</h4>
+    <?php if (sizeof($paginator) > 0): ?>
+      <?php foreach ($paginator as $key => $blog): ?>
+        <div class="page5-box1">
+          <div class="pro_lifted" >
+            <div class="pro_text-shadow left-a">
+              <a class="link4" href="<?= $this->url('blog-detail', array("id" => $blog->blog_id, 'title' => str_replace($occr, $rep, $blog->title))) ?>"><?= $blog->title ?> (<?= $blog->comments_count ?>)</a>              
+              <div class="clear"></div>
+              <div class="inner2">
+                <div class="fleft p28">
+                  Posted on 
+                  <time datetime="<?= $blog->create_date ?>"><?= date("jS F, Y", strtotime($blog->create_date)) ?></time> 
+                  by 
+                  <a class="link5" href=""><?= ucfirst($blog->author) ?></a> 
+                  in 
+                  <a class="link5" href="<?= $this->url('blog', array('category' => $blog->category_id, 'category_title' => $blog->category, 'tag' => $page_params['tag'], 'tag_id' => $page_params['tag_id'])) ?>"><?= $blog->category ?></a>
+                </div>
+
+                <div class="clear"></div>
+              </div>
+              <article class="grid_2 alpha">
+                <figure class="page5-img1">
+                  <a href="<?= $this->url('blog-detail', array("id" => $blog->blog_id, 'title' => str_replace($occr, $rep, $blog->title))) ?>">
+                    <span class="pro_image_reflection ref_border" style="background: url(<?= $this->basePath() ?>/assests/images/blogs/list/<?= $blog->images ?>) 0 0 no-repeat"></span>
+                  </a>
+                </figure>
+              </article>
+              <article class="grid_6 omega pad6px">
+                <p class="blog_desc">
+                  <?= substr($blog->description, 0, 400) ?>                  
+
+                </p>
+                <a class="link1 fright" href="<?= $this->url('blog-detail', array("id" => $blog->blog_id, 'title' => str_replace($occr, $rep, $blog->title))) ?>">Read more</a>
+              </article>
+              <div class="clear"></div>
+            </div>
+
+          </div>
+        </div>
+      <?php endforeach; ?>
+    <?php else: ?>  
+      <div class="page5-box1">
+        <article class="grid_5 alpha">
+          <span>No Blog Found.</span>
+        </article>
+      </div>
+    <?php endif; ?>  
+    <?= $this->paginationControl($paginator, 'Sliding', 'paginator-slide', $page_params); ?>
+  </article>
+  <article class="grid_3">
+    <h4>Search</h4>    
+    <form id="pro_search" action="<?= $this->url('blog-search', array('keyword' => null, 'page' => null)) ?>" method="post" style="margin-bottom: 5px;">
+      <input type="text" name="keyword" id="keyword" value="<?= $page_params['keyword'] ?>" placeholder="Search Blogs">
+      <a id="pro-search-btn" class="pro_btn fright" >Search</a>
+    </form>
+    <div class="clear"></div>
+    <h4>Categories</h4>
+    <?php $categories = $this->blog()->categories('Blog\Model\CategoryTable'); ?>
+    <div class="pro_raised">
+      <div class="pro_text-shadow left-a">        
+        <ul class="list1">
+          <?php
+          if (sizeof($categories) > 0):
+            foreach ($categories as $category):
+              ?>
+              <li>
+                <a href="<?= $this->url('blog', array('category' => $category->category_id, 'category_title' => str_replace(" ", "_", $category->title), 'tag' => null, 'tag_id' => null)) ?>">
+                  <?= $category->title ?> (<?= ($category->count == 0 ) ? $category->count : "<b>{$category->count}</b>" ?>)
+                </a>
+              </li>
+              <?php
+            endforeach;
+          endif;
+          ?>
+        </ul>
+      </div>
+    </div>
+  </article>
+
+</div>

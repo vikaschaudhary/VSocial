@@ -1,0 +1,25 @@
+<?php if ($this->pageCount): ?>
+  <ul class="pro_pages">
+    <li <?= !isset($this->previous) ? 'class="disabled"' : ''; ?>>
+      <a href="<?= $this->url('blog', array('page' => $this->first, 'tag' => $tag, 'tag_id' => $tag_id, 'category' => $category, 'category_title' => $category_title,)); ?>" class="pro_btn pro_prev"><span></span></a></li>
+    <li <?= !isset($this->previous) ? 'class="disabled"' : ''; ?>>
+      <a href="<?= $this->url('blog', array('page' => $this->previous, 'tag' => $tag, 'tag_id' => $tag_id, 'category' => $category, 'category_title' => $category_title,)); ?>"><span></span></a></li>
+
+    <!-- Numbered page links -->
+    <?php foreach ($this->pagesInRange as $page): ?>
+      <li <?= $page == $this->current ? 'class="active"' : ''; ?>>
+        <a class="pro_btn pro_page" href="<?= $this->url('blog', array('page' => $page, 'tag' => $tag, 'tag_id' => $tag_id, 'category' => $category, 'category_title' => $category_title,)); ?>">
+          <span><?= $page; ?></span>
+        </a>
+      </li>
+    <?php endforeach; ?>
+
+    <!-- Next page link -->
+    <li <?= !isset($this->next) ? 'class="disabled"' : ''; ?>>
+      <a href="<?= $this->url('blog', array('page' => $this->next, 'tag' => $tag, 'tag_id' => $tag_id, 'category' => $category, 'category_title' => $category_title,)); ?>
+         "><span></span></a></li>
+    <!-- Last page link -->
+    <li <?= !isset($this->next) ? 'class="disabled"' : ''; ?>>
+      <a href="<?= $this->url('blog', array('page' => $this->last, 'tag' => $tag, 'tag_id' => $tag_id, 'category' => $category, 'category_title' => $category_title,)); ?>" class="pro_btn pro_next"><span></span></a></li>
+  </ul>  
+<?php endif; ?>

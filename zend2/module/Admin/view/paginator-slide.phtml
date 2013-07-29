@@ -1,0 +1,63 @@
+<?php if ($this->pageCount): ?>
+  <ul class="admin-paginator">
+    <li>
+      <?php if (!isset($this->previous)): ?>
+        <a class="disable">
+          <span>First</span>
+        </a>
+      <?php else: ?>
+      <a href="<?= $this->url($route, array_merge(array('page' => $this->first,), $page_params)); ?>" class="<?= 1 == $this->current ? 'active' : ''; ?>">
+          <span>First</span>
+        </a>
+      <?php endif; ?>
+    </li>
+    <li>
+      <?php if (!isset($this->previous)): ?>
+        <a class="disable"><span>Previous</span></a>
+      <?php else: ?>
+        <a href="<?= $this->url($route, array_merge(array('page' => $this->previous,), $page_params)); ?>">
+          <span>Previous</span>
+        </a>
+      <?php endif; ?>
+    </li>
+
+    <!-- Numbered page links -->
+    <?php foreach ($this->pagesInRange as $page): ?>
+      <li>
+        <?php if ($page != $this->current): ?>
+          <a href="<?= $this->url($route, array_merge(array('page' => $page,), $page_params)); ?>">
+            <span><?= $page; ?></span>
+          </a>
+        <?php else: ?>
+          <a class="active">
+            <span><?= $page; ?></span>
+          </a>
+        <?php endif; ?>
+      </li>
+    <?php endforeach; ?>
+
+    <!-- Next page link -->
+    <li>
+      <?php if (!isset($this->next)): ?>
+        <a class="disable"><span>Next</span></a>
+      <?php else: ?>
+        <a href="<?= $this->url($route, array_merge(array('page' => $this->next,), $page_params)); ?>">
+          <span>Next</span>
+        </a>
+      <?php endif; ?>
+    </li>
+    <!-- Last page link -->
+    <li>
+
+      <?php if (!isset($this->next)): ?>
+        <a class="disable">
+          <span>Last</span>
+        </a>
+      <?php else: ?>
+        <a href="<?= $this->url($route, array_merge(array('page' => $this->last,), $page_params)); ?>" class="pageing-btn pageing-last">
+          <span>Last</span>
+        </a>
+      <?php endif; ?>
+    </li>
+  </ul>  
+<?php endif; ?>

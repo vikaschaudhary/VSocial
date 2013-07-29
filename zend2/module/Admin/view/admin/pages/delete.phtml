@@ -1,0 +1,30 @@
+<?php
+echo $this->headLink()->prependStylesheet($this->basePath() . '/assests/admin/css/popup.css?r=' . rand(0, 9999));
+echo $this->headScript()
+        ->prependFile($this->basePath() . '/assests/admin/js/popup_script.js')
+        ->prependFile($this->basePath() . '/assests/admin/js/jquery-1.10.1.min.js');
+?>
+<article>
+  <div class="text-section">
+    <div class='center-content'>
+      <ul class="states">
+        <?php if (isset($success) && $success == true): ?>
+          <li class="success">Success: <?= $message ?>.</li> 
+          <meta http-equiv="refresh" content="2;url=<?= $this->url("admin-pages", array("page" => $page)) ?>" />        
+        <?php elseif (isset($success) && $success == false): ?>
+          <li class="error">Error: <?= $message ?>.</li> 
+        <?php else: ?>
+          <li class="warning">Warning: Are you sure you want to delete this page.</li> 
+        <?php endif; ?>
+
+      </ul>
+      <?php if (!isset($success)): ?>
+        <form id="delete-user" name="delete-user" method="post" action="">
+          <button class="delete" type="submit" id="delete-yes" name="delete-yes" value="yes">Yes</button>
+          <button class="delete" type="button" id="delete-no" name="delete-no" value="no">No</button>
+        </form> 
+      <?php endif; ?>
+    </div>
+    <div class="clear"></div>
+  </div>
+</article>
